@@ -1,0 +1,43 @@
+# Mythical Games
+
+> Mythical Games is a Web3 game-technology studio (an a16z portfolio company) that builds games with player-owned digital items and a secondary marketplace economy. Its Mythical Platform is a B2B toolkit that lets any game add a tradeable item-and-currency economy, exposed to integrating studios through gRPC/Protobuf SDKs (the Saga SDK and the earlier IVI SDK) rather than a public REST/OpenAPI surface. Assets can settle on the Mythos chain, a Polkadot/Substrate gaming parachain (MYTH token).
+
+## APIs
+
+- [Mythical Saga Platform API (gRPC/Protobuf)](https://github.com/MythicalGames/saga-sdk-proto): items, item types, currencies, currency types, listings, offers, player wallets, reservations, NFT bridge, metadata, and a server-streaming status channel.
+
+## Specs
+
+- [Saga Protobuf definitions](grpc/saga/): 40 .proto files across api/, common/, and streams/.
+- [Item service](grpc/saga/api/item/rpc.proto)
+- [Listing service](grpc/saga/api/listing/rpc.proto)
+- [Currency service](grpc/saga/api/currency/rpc.proto)
+
+## SDKs / Packages
+
+- [saga-sdk-java (Maven Central: games.mythical)](https://central.sonatype.com/artifact/games.mythical/saga-sdk-java)
+- [ivi-sdk-java (Maven Central: games.mythical)](https://central.sonatype.com/artifact/games.mythical/ivi-sdk-java)
+- [ivi-sdk-cpp (GitHub)](https://github.com/MythicalGames/ivi-sdk-cpp)
+- [ivi-sdk-python (GitHub)](https://github.com/MythicalGames/ivi-sdk-python)
+- [Packages catalog](packages/mythical-games-packages.yml)
+
+## Derived artifacts
+
+- [MCP candidate tools](mcp/mythical-games-mcp.yml)
+- [Authentication profile](authentication/mythical-games-authentication.yml)
+- [Error semantics](errors/mythical-games-error-codes.yml)
+- [Conventions](conventions/mythical-games-conventions.yml)
+- [Data model](data-model/mythical-games-data-model.yml)
+- [Conformance](conformance/mythical-games-conformance.yml)
+- [Domain security](security/mythical-games-domain-security.yml)
+- [Agent skills](skills/_index.yml)
+
+## Company
+
+- [Website](https://mythicalgames.com/)
+- [GitHub organization](https://github.com/MythicalGames)
+- [Mythical Marketplace](https://mythical.market/)
+- [Mythos blockchain](https://mythos.foundation)
+- [News / blog](https://mythicalgames.com/news)
+- [Terms of Service](https://mythicalgames.com/terms-of-service)
+- [Privacy Policy](https://mythicalgames.com/privacy)

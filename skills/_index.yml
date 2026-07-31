@@ -1,0 +1,14 @@
+generated: '2026-07-20'
+method: generated
+source: >-
+  Grounded in real Saga SDK gRPC operations (grpc/saga/api/*/rpc.proto). No
+  provider-published agent skills / AGENTS.md were found for Mythical Games.
+skills:
+- file: mythical-games-issue-and-transfer-item.md
+  name: Issue and transfer a game item (Saga)
+  api: grpc/saga/
+  operations: [CreateItemType, StartMint, IssueItem, GetItemsForPlayer, TransferItem]
+- file: mythical-games-list-and-sell.md
+  name: List an item and complete a sale (Saga marketplace)
+  api: grpc/saga/
+  operations: [CreateListingQuote, ConfirmListing, GetListings, CreateOfferQuote, ConfirmOffer]

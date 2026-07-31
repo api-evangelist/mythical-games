@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: probed
+source: live HTTP probes of /.well-known/ paths on apis.yml + gRPC hosts
+notes: >-
+  No /.well-known/ discovery documents are published. The website host redirects
+  every /.well-known/ path to an error page (302 -> /error) and the gRPC API host
+  returns 404. Recorded as an honest negative; no raw documents were saved and no
+  WellKnown/SecurityTxt pointer is wired.
+hosts:
+- host: https://mythicalgames.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+  - path: /.well-known/openid-configuration
+    status: 302
+  - path: /.well-known/oauth-authorization-server
+    status: 302
+  - path: /.well-known/api-catalog
+    status: 302
+  - path: /.well-known/ai-plugin.json
+    status: 302
+- host: https://api.mythicalgames.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404

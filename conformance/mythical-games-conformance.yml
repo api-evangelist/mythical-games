@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+source: grpc/saga/**/*.proto, MythicalGames GitHub org
+notes: >-
+  Standards conformance derived from the published Protobuf contract. No compliance
+  certifications (SOC 2, ISO 27001, PCI, HIPAA, FedRAMP) were found published for the
+  Mythical Platform during this pass, so no Compliance pointer is emitted.
+standards:
+- id: grpc
+  conforms: true
+  evidence: Services defined as gRPC services in grpc/saga/api/*/rpc.proto.
+- id: protobuf3
+  conforms: true
+  evidence: All specs declare 'syntax = "proto3"'.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Not an HTTP/REST API; errors use gRPC status + ErrorProto/ErrorData messages.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme; SDK-managed credentials via gRPC metadata.
+- id: erc721-metadata
+  conforms: true
+  evidence: >-
+    Item Metadata message mirrors the OpenSea/ERC-721 metadata schema (name,
+    description, image, external_url, animation_url, attributes[]).
+- id: cursor-pagination
+  conforms: true
+  evidence: QueryOptionsProto uses created_at cursor + page_size + sort_order.

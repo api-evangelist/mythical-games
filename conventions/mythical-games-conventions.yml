@@ -1,0 +1,56 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  grpc/saga/**/*.proto (Saga SDK Protobuf definitions), MythicalGames GitHub org
+notes: >-
+  Cross-cutting semantics derived from the Saga SDK Protobuf contract. This is a
+  gRPC/Protobuf API, not REST — conventions are expressed in message and service
+  shapes rather than HTTP headers.
+transport:
+  protocol: gRPC
+  encoding: protobuf3
+  proto_source: grpc/saga/
+authentication:
+  style: sdk-managed
+  detail: >-
+    Access is via the first-party SDKs (Java/C++/Python). Requests are scoped to a
+    game/title via game_title_id / title_id fields present in the request messages;
+    credentials are supplied through the SDK's environment configuration rather than
+    a public OAuth/OpenID surface.
+  see: authentication/mythical-games-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency-key field or header was found in the Saga Protobuf contract.
+    Write RPCs are acknowledged with a trace_id and reconciled via the status
+    stream.
+pagination:
+  style: cursor
+  params:
+    - page_size (QueryOptionsProto.page_size, int32)
+    - created_at_cursor (QueryOptionsProto.created_at_cursor, google.protobuf.Timestamp)
+    - sort_order (QueryOptionsProto.sort_order, enum ASC|DESC)
+  detail: Cursor-based pagination keyed on created_at, with page_size and sort order.
+async_writes:
+  pattern: ack-then-stream
+  detail: >-
+    Mutating RPCs (IssueItem, TransferItem, IssueCurrency, ConfirmListing, etc.)
+    return ReceivedResponse{trace_id} synchronously; the terminal result is
+    delivered asynchronously on the StatusStream server-stream and confirmed via
+    StatusConfirmation.
+request_tracing:
+  field: trace_id
+  detail: Every acknowledgement and error carries a trace_id for correlation.
+errors:
+  see: errors/mythical-games-error-codes.yml
+  envelope: [ErrorProto, ErrorData]
+streaming:
+  service: StatusStream
+  proto: grpc/saga/streams/stream.proto
+  detail: Server-streaming status updates plus per-entity stream definitions under grpc/saga/streams/.
+metadata:
+  model: ERC-721/OpenSea-style
+  detail: >-
+    Item metadata follows the common Metadata message (name, description, image,
+    external_url, animation_url, youtube_url, background_color, attributes[]),
+    mirroring the OpenSea/ERC-721 metadata conventions.

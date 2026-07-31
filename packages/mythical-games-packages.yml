@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  Maven Central (group games.mythical), PyPI, and the MythicalGames GitHub
+  organization
+notes: >-
+  Mythical exposes its platform primarily through gRPC/Protobuf SDKs for the Saga
+  platform (current) and the earlier IVI platform. Java and Protobuf artifacts are
+  published to Maven Central under the games.mythical group; C++ and Python SDKs are
+  distributed via the GitHub organization. official:true is set only where the
+  publisher/group is clearly first-party (games.mythical / MythicalGames org).
+packages:
+- language: java
+  registry: maven-central
+  name: games.mythical:saga-sdk-java
+  url: https://central.sonatype.com/artifact/games.mythical/saga-sdk-java
+  install: 'implementation "games.mythical:saga-sdk-java:1.1.30"'
+  version: 1.1.30
+  official: true
+- language: java
+  registry: maven-central
+  name: games.mythical:saga-sdk-proto
+  url: https://central.sonatype.com/artifact/games.mythical/saga-sdk-proto
+  install: 'implementation "games.mythical:saga-sdk-proto:1.1.30"'
+  version: 1.1.30
+  official: true
+- language: java
+  registry: maven-central
+  name: games.mythical:ivi-sdk-java
+  url: https://central.sonatype.com/artifact/games.mythical/ivi-sdk-java
+  install: 'implementation "games.mythical:ivi-sdk-java:2.1.0"'
+  version: 2.1.0
+  official: true
+- language: java
+  registry: maven-central
+  name: games.mythical:ivi-sdk-proto
+  url: https://central.sonatype.com/artifact/games.mythical/ivi-sdk-proto
+  install: 'implementation "games.mythical:ivi-sdk-proto:2.1.0"'
+  version: 2.1.0
+  official: true
+- language: cpp
+  registry: github
+  name: MythicalGames/ivi-sdk-cpp
+  url: https://github.com/MythicalGames/ivi-sdk-cpp
+  install: git clone https://github.com/MythicalGames/ivi-sdk-cpp
+  official: true
+- language: python
+  registry: github
+  name: MythicalGames/ivi-sdk-python
+  url: https://github.com/MythicalGames/ivi-sdk-python
+  install: pip install git+https://github.com/MythicalGames/ivi-sdk-python
+  official: true
+- language: python
+  registry: pypi
+  name: ivi-sdk
+  url: https://pypi.org/project/ivi-sdk/
+  install: pip install ivi-sdk
+  version: '0.1'
+  official: false
+  notes: >-
+    PyPI "ivi-sdk" (v0.1, "Simple IVI gRPC stream API wrapper") lacks published
+    author/homepage metadata; treated as a community wrapper rather than a verified
+    first-party publish. The verified first-party Python SDK is the ivi-sdk-python
+    repo in the MythicalGames GitHub org.

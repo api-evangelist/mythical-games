@@ -1,0 +1,74 @@
+generated: '2026-07-20'
+method: derived
+source: grpc/saga/**/*.proto (Saga SDK Protobuf definitions)
+notes: >-
+  Entity graph derived from the Saga SDK Protobuf messages and services. Relationships
+  are inferred from id-reference fields and the definition/rpc proto pairs per domain.
+entities:
+- name: ItemType
+  proto: grpc/saga/api/itemtype/definition.proto
+  description: A template/class of items that can be minted; governs minting windows.
+- name: Item
+  proto: grpc/saga/api/item/definition.proto
+  description: An issued instance of an ItemType owned by a player; transferable and burnable.
+- name: CurrencyType
+  proto: grpc/saga/api/currencytype/definition.proto
+  description: A class of currency defined within a title's economy.
+- name: Currency
+  proto: grpc/saga/api/currency/definition.proto
+  description: Player balances of a CurrencyType; issued, transferred, and burned.
+- name: PlayerWallet
+  proto: grpc/saga/api/playerwallet/definition.proto
+  description: A wallet provisioned for a player, holding items and currency balances.
+- name: Listing
+  proto: grpc/saga/api/listing/definition.proto
+  description: A marketplace listing offering an item for sale.
+- name: Offer
+  proto: grpc/saga/api/offer/definition.proto
+  description: An offer made against a listing.
+- name: Reservation
+  proto: grpc/saga/api/reservation/definition.proto
+  description: A hold on inventory during a purchase/redemption flow.
+- name: NftBridge
+  proto: grpc/saga/api/nftbridge/definition.proto
+  description: The bridge that withdraws an item to an on-chain NFT (Mythos chain).
+- name: Metadata
+  proto: grpc/saga/common/common.proto
+  description: OpenSea/ERC-721-style metadata attached to items.
+relationships:
+- from: Item
+  to: ItemType
+  kind: belongs_to
+  via: item_type
+- from: Item
+  to: PlayerWallet
+  kind: belongs_to
+  via: player/owner
+- from: Currency
+  to: CurrencyType
+  kind: belongs_to
+  via: currency_type
+- from: Currency
+  to: PlayerWallet
+  kind: belongs_to
+  via: player
+- from: Listing
+  to: Item
+  kind: has_one
+  via: item
+- from: Offer
+  to: Listing
+  kind: belongs_to
+  via: listing
+- from: Reservation
+  to: Item
+  kind: has_one
+  via: item
+- from: NftBridge
+  to: Item
+  kind: has_one
+  via: item
+- from: Item
+  to: Metadata
+  kind: has_one
+  via: metadata

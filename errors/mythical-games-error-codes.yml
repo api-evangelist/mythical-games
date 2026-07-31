@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: derived
+source: grpc/saga/api/common/error.proto, grpc/saga/common/common.proto
+format: grpc-status
+notes: >-
+  The Saga gRPC API does not use RFC 9457 problem+json (it is not a REST/HTTP API).
+  Errors are surfaced two ways. Synchronous RPC failures return a standard gRPC
+  status. Structured error detail is carried in ErrorProto / ErrorData messages.
+  Asynchronous write RPCs return a ReceivedResponse{trace_id} immediately and the
+  final outcome (including failure) is delivered over the server-streaming
+  StatusStream channel, correlated by trace_id.
+error_envelope:
+  ErrorProto:
+    - {field: code, type: int32, note: numeric error code}
+    - {field: message, type: string, note: human-readable error message}
+    - {field: source, type: string, note: service in which the error occurred}
+    - {field: trace_id, type: string, note: correlation id for the operation}
+  ErrorData:
+    - {field: error_code, type: string, note: string error code}
+    - {field: message, type: string, note: description of the error}
+    - {field: source, type: string, note: service the error occurred in}
+    - {field: trace, type: string, note: trace id for the operation}
+async_outcome_channel:
+  service: StatusStream
+  proto: grpc/saga/streams/stream.proto
+  correlation_field: trace_id
+  note: >-
+    Writes acknowledge with ReceivedResponse{trace_id}; the terminal status
+    (success/failure) arrives as a StatusUpdate on the StatusStream, and clients
+    acknowledge it via StatusConfirmation.
+problems: []

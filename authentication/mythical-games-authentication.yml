@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  grpc/saga/**/*.proto and the MythicalGames SDK repositories. No public OpenAPI
+  securitySchemes exist (this is a gRPC API); the model below is inferred from the
+  Protobuf contract and SDK usage.
+summary:
+  types: [sdk-credential]
+  api_key_in: [grpc-metadata]
+  oauth2_flows: []
+notes: >-
+  The Saga platform is a partner/B2B gRPC API accessed through first-party SDKs
+  (Java/C++/Python). There is no public OAuth/OpenID discovery surface. Requests are
+  scoped to a game title via game_title_id / title_id fields carried in the request
+  messages, and caller credentials are supplied via the SDK's environment
+  configuration (passed as gRPC call metadata). This artifact should be upgraded to
+  method:searched if Mythical publishes a partner authentication reference.
+schemes:
+- name: sdk-credential
+  type: apiKey
+  in: metadata
+  detail: >-
+    SDK-managed credential presented as gRPC call metadata; title scoping via
+    game_title_id / title_id request fields.
+  sources: [grpc/saga/]
+scopes: null

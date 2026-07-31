@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  Maven Central (group games.mythical) artifact versions + MythicalGames GitHub
+  organization (saga-sdk-* / ivi-sdk-* repositories)
+notes: >-
+  Mythical publishes no formal versioning, deprecation, or SLA policy page and no
+  public status page (a mythicalgames.statuspage.io tenant does not exist; it
+  redirects to the generic statuspage.io site). Lifecycle signals are derived from
+  the SemVer-versioned SDK artifacts on Maven Central and the platform succession
+  visible across the GitHub org.
+versioning:
+  scheme: semver
+  detail: >-
+    SDK and generated Protobuf artifacts are released to Maven Central under
+    games.mythical with SemVer version strings. There is no API-surface version
+    path; clients pin an SDK version.
+  current:
+    saga_sdk: 1.1.30
+    saga_sdk_proto: 1.1.30
+platform_succession:
+  current: Saga SDK / Saga Platform
+  predecessor: IVI SDK / IVI platform
+  detail: >-
+    The IVI SDK (games.mythical:ivi-sdk-* 2.1.0, ivi-sdk-cpp, ivi-sdk-python) is the
+    earlier generation of the integration platform; the Saga SDK is its successor.
+    Mythical publishes no dated deprecation/sunset notice for IVI, so this is
+    recorded as an observed succession rather than a documented deprecation policy.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  detail: No published deprecation policy or RFC 8594 Sunset/Deprecation header support.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

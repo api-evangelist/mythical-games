@@ -1,0 +1,88 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: >-
+  Derived from the Saga SDK gRPC service definitions in
+  grpc/saga/api/*/rpc.proto. No official hosted/remote MCP server was found for
+  Mythical Games as of this pass; this is a candidate tool surface mapped one tool
+  per gRPC RPC.
+server:
+  name: mythical-games-saga
+  transport: http
+  url: null
+tools:
+- name: get_item
+  description: Get a single item by id.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.GetItem
+- name: get_items
+  description: Get items based on filters.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.GetItems
+- name: get_items_for_player
+  description: Get all items owned by a player.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.GetItemsForPlayer
+- name: issue_item
+  description: Issue (mint/grant) an item to a player.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.IssueItem
+- name: transfer_item
+  description: Transfer an item between users.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.TransferItem
+- name: transfer_item_bulk
+  description: Transfer multiple items between users.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.TransferItemBulk
+- name: burn_item
+  description: Burn (destroy) an item.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.BurnItem
+- name: deposit_item
+  description: Deposit an item.
+  source_operation: grpc/saga/api/item/rpc.proto#ItemService.DepositItem
+- name: get_item_type
+  description: Get an item type definition.
+  source_operation: grpc/saga/api/itemtype/rpc.proto#ItemTypeService.GetItemType
+- name: create_item_type
+  description: Create a new item type.
+  source_operation: grpc/saga/api/itemtype/rpc.proto#ItemTypeService.CreateItemType
+- name: start_mint
+  description: Begin minting for an item type.
+  source_operation: grpc/saga/api/itemtype/rpc.proto#ItemTypeService.StartMint
+- name: end_mint
+  description: End minting for an item type.
+  source_operation: grpc/saga/api/itemtype/rpc.proto#ItemTypeService.EndMint
+- name: issue_currency
+  description: Issue currency to a player.
+  source_operation: grpc/saga/api/currency/rpc.proto#CurrencyService.IssueCurrency
+- name: transfer_currency
+  description: Transfer currency between players.
+  source_operation: grpc/saga/api/currency/rpc.proto#CurrencyService.TransferCurrency
+- name: burn_currency
+  description: Burn currency.
+  source_operation: grpc/saga/api/currency/rpc.proto#CurrencyService.BurnCurrency
+- name: get_balance_of_player
+  description: Get a player's balance for a currency.
+  source_operation: grpc/saga/api/currency/rpc.proto#CurrencyService.GetBalanceOfPlayer
+- name: create_listing_quote
+  description: Create a marketplace listing quote.
+  source_operation: grpc/saga/api/listing/rpc.proto#ListingService.CreateListingQuote
+- name: confirm_listing
+  description: Confirm a marketplace listing.
+  source_operation: grpc/saga/api/listing/rpc.proto#ListingService.ConfirmListing
+- name: cancel_listing
+  description: Cancel a marketplace listing.
+  source_operation: grpc/saga/api/listing/rpc.proto#ListingService.CancelListing
+- name: create_offer_quote
+  description: Create an offer quote on a listing.
+  source_operation: grpc/saga/api/offer/rpc.proto#OfferService.CreateOfferQuote
+- name: confirm_offer
+  description: Confirm an offer.
+  source_operation: grpc/saga/api/offer/rpc.proto#OfferService.ConfirmOffer
+- name: create_player_wallet
+  description: Provision a wallet for a player.
+  source_operation: grpc/saga/api/playerwallet/rpc.proto#PlayerWalletService.CreatePlayerWallet
+- name: create_reservation
+  description: Reserve inventory for a purchase flow.
+  source_operation: grpc/saga/api/reservation/rpc.proto#ReservationService.CreateReservation
+- name: withdraw_item_to_nft
+  description: Bridge/withdraw an item to an on-chain NFT.
+  source_operation: grpc/saga/api/nftbridge/rpc.proto#NftBridgeService.WithdrawItem
+- name: update_item_metadata
+  description: Update the metadata of an item.
+  source_operation: grpc/saga/api/metadata/rpc.proto#MetadataService.UpdateItemMetadata
