@@ -1,11 +1,9 @@
 generated: '2026-07-20'
 method: derived
 status: candidate
-source: >-
-  Derived from the Saga SDK gRPC service definitions in
-  grpc/saga/api/*/rpc.proto. No official hosted/remote MCP server was found for
-  Mythical Games as of this pass; this is a candidate tool surface mapped one tool
-  per gRPC RPC.
+source: Derived from the Saga SDK gRPC service definitions in grpc/saga/api/*/rpc.proto. No official hosted/remote
+  MCP server was found for Mythical Games as of this pass; this is a candidate tool surface mapped one
+  tool per gRPC RPC.
 server:
   name: mythical-games-saga
   transport: http
@@ -86,3 +84,9 @@ tools:
 - name: update_item_metadata
   description: Update the metadata of an item.
   source_operation: grpc/saga/api/metadata/rpc.proto#MetadataService.UpdateItemMetadata
+deployment:
+  mode: none
+  verified: derived
+  tools: 25
+  checked: '2026-08-12'
+  source: catalog MCP census
